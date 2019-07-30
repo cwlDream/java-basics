@@ -13,7 +13,7 @@
     将选择实现类、创建对象统一管理和控制。从而将调用者跟我们的实现类解耦。
     工厂与容器概念.
     
-## 简单工厂的实现:
+## 一.简单工厂的实现:
 **简单工厂的定义**：提供一个创建对象实例的功能，而无须关心其具体实现。被创建实例的类型可以是接口、抽象类，也可以是具体的类</br>
  **1.具体操作接口**
  ```
@@ -70,3 +70,46 @@
     }
 }
  ```
+## 二.工厂方法
+**1.工厂方法接口**
+```
+//定义一个工厂接口，功能就是生产汽车
+public interface Factory {
+
+    public String getCar();
+}
+```
+**2.定义奔驰工厂**
+```
+public class BenChi implements Factory {
+    @Override
+    public String getCar() {
+        return "奔驰";
+    }
+}
+```
+**3.定义宝马工厂**
+```
+public class BaoMa implements Factory {
+    @Override
+    public String getCar() {
+        return "宝马";
+    }
+}
+```
+**4.测试类**
+```
+public class MethodUser {
+    public static void main(String[] args){
+        String car1 = new BenChi().getCar();
+        System.out.println("=======car的名字"+car1);
+        String car2 = new BaoMa().getCar();
+        System.out.println("=======car的名字"+car2);
+    }
+}
+```
+
+
+
+ 
+ 
