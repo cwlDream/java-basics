@@ -165,10 +165,88 @@ public static void main(String[] args) {
     代理模式分：
         1.动态代理
         2.静态代理
-     动态代理分：
-        1.JDK动态代理
-        2.cglib动态代理
+     动态代理模式分：
+        1.JDK动态代理 -->代理接口
+        2.cglib动态代理 -->代理类
+        
+  **1.JDK代理的实现代码**
+  ```
+  /**
+ * JDK代理类
+ */
+public class JDKProxy implements InvocationHandler {
 
+    private Object targetObject;//需要代理的目标对象
 
+    public Object newProxy(Object targetObject){//将目标对象传入进行代理
+        this.targetObject = targetObject;
+        return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(),
+                targetObject.getClass().getInterfaces(), this);//返回代理对象
+    }
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args)throws Throwable {
+        before();
+        Object ret = null;      // 设置方法的返回值
+        ret  = method.invoke(targetObject, args); //invoke调用需要代理的方法
+        after();
+        return ret;
+    }
+
+    private void before() {//方法执行前
+        System.out.println("方法执行前 !");
+    }
+    private void after() {//方法执行后
+        System.out.println("方法执行后");
+    }
+}
+  ```
+  ## 三.委派模式：
+        总结：A,B两个类具有相同的方法，在B类写构造方法注A类对象，在B中调用A类方法(调用这个方法是A,B两个类共有的方法)。
+  **员工接口**
+  ```
+    public interface Employee {
+         public void doing();
+    }
+  ```
+  **程序员**
+  ```
+  public class Programmer implements Employee {
+    @Override
+    public void doing() {
+        System.out.println("程序员码代码");
+    }
+}
+  ```
+  **项目经理**
+  ```
+  public class Manager implements Employee {
+    //程序员
+    private Programmer programmer;
+    //构造方法注入程序员
+    Manager(Programmer programmer) {
+        this.programmer=programmer;
+    }
+
+    @Override
+    public void doing() {
+        //这是程序员
+        programmer.doing();
+    }
+
+}
+
+  ```
+**测试**
+```
+public class Test {
+    public static void main(String[] args) {
+        Manager manager=new Manager(new Programmer());
+        manager.doing();
+        //看似是项目经理在做事情
+        //其实是叫程序员做的
+        //功劳是项目经理的，干活是程序员
+    }
+}
+```
  
  
