@@ -108,6 +108,61 @@ public class MethodUser {
     }
 }
 ```
+## 三.抽象工厂
+```
+//抽象的人类,为所有的人造人提供一个相同的人造人属性
+public abstract class Man {
+    public abstract void eat();
+}
+
+public class AsiaMan extends Man {  
+    @Override
+    public void eat() {
+    System.out.println("亚洲人用筷子吃");
+    }
+}
+
+public  class AmericanSuperMan extends Man  {
+    @Override
+    public void eat() {
+    System.out.println("美国人用刀叉吃");
+    }
+}
+
+
+//抽象工厂,为所有的不同的工厂提供一个制作人造人的相同方法
+public abstract class Factory {
+    public abstract *Man* product();
+}
+
+public class AsiaManFactory extends Factory {
+    @Override
+    public Man product() {
+        Man anAisaMan = new AsiaMan();
+        return anAisaMan;
+    }
+}
+
+public class AmericanFactory extends Factory {
+    @Override
+    public Man product() {
+        AmericanSuperMan anAmericanSuperMan = new AmericanSuperMan();
+        return anAmericanSuperMan;
+    }
+}   
+public static void main(String[] args) {
+    
+    AsiaManFactory asiaManFactory = new AsiaManFactory();
+    AmericanFactory americanFactory = new AmericanFactory();
+    
+    Man anAmericanSuperMan = americanFactory.product();
+    Man anAsia = asiaManFactory.product();
+    
+    anAsia.eat();
+    anAmericanSuperMan.eat();   
+
+}
+```
 
 
 
