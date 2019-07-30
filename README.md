@@ -132,13 +132,13 @@ public  class AmericanSuperMan extends Man  {
 
 //抽象工厂,为所有的不同的工厂提供一个制作人造人的相同方法
 public abstract class Factory {
-    public abstract *Man* product();
+    public abstract Man product(); //注意这个抽象方法返回的类型是，上面抽象类(Man类)的类型
 }
 
 public class AsiaManFactory extends Factory {
     @Override
     public Man product() {
-        Man anAisaMan = new AsiaMan();
+        Man anAisaMan = new AsiaMan();//Man类型的具体实现类
         return anAisaMan;
     }
 }
