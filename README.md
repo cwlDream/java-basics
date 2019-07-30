@@ -14,15 +14,15 @@
     工厂与容器概念.
     
 ## 简单工厂的实现:
-**简单工厂的定义**：提供一个创建对象实例的功能，而无须关心其具体实现。被创建实例的类型可以是接口、抽象类，也可以是具体的类
- **具体操作接口**
+**简单工厂的定义**：提供一个创建对象实例的功能，而无须关心其具体实现。被创建实例的类型可以是接口、抽象类，也可以是具体的类</br>
+ **1.具体操作接口**
  ```
  public interface Operation {
 
     void run(String name);
 }
  ```
- **实现操作类接口-宝马**
+ **2.实现操作类接口-宝马**
  ```
  public class BaoMa implements Operation {
     @Override
@@ -31,7 +31,7 @@
     }
 }
  ```
- **实现操作类接口-奔驰**
+ **3.实现操作类接口-奔驰**
  ```
  ublic class BenChi implements Operation {
     @Override
@@ -40,7 +40,7 @@
     }
 }
  ```
- **创建简单工厂**
+ **4.创建简单工厂**
  ```
  public class SimpleFactory {
 
@@ -61,7 +61,7 @@
 }
 
  ```
- **测试类**
+ **5.测试类**
  ```
  public class SimpleUser {
     public static void main(String[] args){
