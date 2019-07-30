@@ -201,7 +201,7 @@ public class JDKProxy implements InvocationHandler {
 }
   ```
   ## 三.委派模式：
-        总结：A,B两个类具有相同的方法，在B类写构造方法注A类对象，在B中调用A类方法(调用这个方法是A,B两个类共有的方法)。
+        委派模式概述：A,B两个类具有相同的方法，在B类写构造方法注A类对象，在B中调用A类方法(调用这个方法是A,B两个类共有的方法)。
   **员工接口**
   ```
     public interface Employee {
